@@ -22,3 +22,14 @@ export async function addNewCandy(req, res) {
         res.status(500).send(err);
     }
 }
+
+export async function updateCandyById(req, res) {
+    try {
+        const { candyId } = req.params;
+        const updateInfo = req.body;
+        await coll.doc(candyId).update(updateInfo);
+        getAllCandy(req, res);
+    } catch(err)  {
+        res.status(500).send(err);
+    }
+}
